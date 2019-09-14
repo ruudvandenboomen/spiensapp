@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_toast2018/flutter_toast2018.dart';
 import 'package:toep_app/animations/listview_effect.dart';
 import 'package:toep_app/pages/game_page.dart';
-import 'package:toep_app/ui/custom_button.dart';
+import 'package:toep_app/ui/custom_appbar.dart';
 
 import '../ui/add_player_widget.dart';
 import '../ui/player_name_list_item.dart';
@@ -18,7 +18,7 @@ class PlayersPageState extends State<PlayersPage> {
   final myController = TextEditingController();
   List<Player> players = [];
   bool _readyButtonVisible = false;
-  Duration _duration = Duration(milliseconds: 300);
+  Duration _duration = Duration(milliseconds: 200);
 
   @override
   void dispose() {
@@ -48,8 +48,10 @@ class PlayersPageState extends State<PlayersPage> {
   void setButtonVisible() {
     if (players.length > 1) {
       _readyButtonVisible = true;
+      setState(() {});
     } else {
       _readyButtonVisible = false;
+      setState(() {});
     }
   }
 
@@ -61,52 +63,30 @@ class PlayersPageState extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: Stack(alignment: Alignment.center, children: <Widget>[
-          Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                  color: Colors.red, width: double.infinity, height: 100)),
-          Container(
-              width: 200,
-              alignment: Alignment.topCenter,
-              padding: EdgeInsets.fromLTRB(0, 48, 0, 0),
-              child: Text("Spelers",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold))),
-          Container(
-              padding: EdgeInsets.fromLTRB(0, 120, 0, 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  AddPlayerWidget(myController, () => addPlayer()),
-                  Expanded(
-                    child: Container(
-                        child: ListViewEffect(
-                            duration: _duration,
-                            children: players
-                                .map((s) => _buildWidgetExample(s))
-                                .toList())),
-                  ),
-                  Container(
-                      padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
-                      child: AnimatedOpacity(
-                        opacity: _readyButtonVisible ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 200),
-                        child: CustomButtonWidget(
-                            "Beginnen",
-                            Colors.red,
-                            Colors.white,
-                            () => Navigator.of(context).push(CupertinoPageRoute(
-                                builder: (BuildContext context) =>
-                                    GamePage(players)))),
-                      ))
-                ],
-              ))
-        ]));
+        floatingActionButton: AnimatedOpacity(
+            opacity: _readyButtonVisible ? 1.0 : 0.0,
+            duration: _duration,
+            child: FloatingActionButton(
+                child: Icon(Icons.arrow_forward),
+                onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (BuildContext context) => GamePage(players))))),
+        appBar: CustomAppBar("Spelers", 100, false),
+        body: Padding(
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                AddPlayerWidget(myController, () => addPlayer()),
+                Expanded(
+                  child: Container(
+                      child: ListViewEffect(
+                          duration: _duration,
+                          children: players
+                              .map((s) => _buildWidgetExample(s))
+                              .toList())),
+                )
+              ],
+            )));
   }
 }

@@ -27,6 +27,7 @@ class AddPlayerWidget extends StatelessWidget {
                             Colors.white, this._onTap, minWidth: 100),
                         border: InputBorder.none,
                       ),
+                      onTap: this._onTap,
                       controller: _textEditingController,
                       textCapitalization: TextCapitalization.words,
                       style: TextStyle(fontSize: 20.0, color: Colors.black),

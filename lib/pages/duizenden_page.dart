@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toep_app/objects/duizenden.dart';
 import 'package:toep_app/objects/player.dart';
+import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
 import 'package:toep_app/ui/duizenden_points_list_item.dart';
 
@@ -34,10 +35,11 @@ class DuizendenPageState extends State<DuizendenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
+        appBar: CustomAppBar("Duizenden", 100, true),
         body: Stack(alignment: Alignment.center, children: <Widget>[
           SingleChildScrollView(
               child: Container(
-                  padding: EdgeInsets.fromLTRB(20, 120, 20, 50),
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 50),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
@@ -65,28 +67,6 @@ class DuizendenPageState extends State<DuizendenPage> {
                             child: CustomButtonWidget("Nieuw potje", Colors.red,
                                 Colors.white, () => newGame()))
                       ]))),
-          Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                  color: Colors.red, width: double.infinity, height: 100)),
-          Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
-              child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  tooltip: 'Back',
-                  color: Colors.white,
-                  onPressed: () => Navigator.of(context).pop())),
-          Container(
-              width: 200,
-              alignment: Alignment.topCenter,
-              padding: EdgeInsets.fromLTRB(0, 48, 0, 0),
-              child: Text("Duizenden",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold)))
         ]));
   }
 }

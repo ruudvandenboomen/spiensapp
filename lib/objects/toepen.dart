@@ -1,13 +1,9 @@
+import 'package:toep_app/objects/Game.dart';
+
 import './player.dart';
 
-class Toepen {
-  List<Player> players;
-
-  Toepen(this.players);
-
-  List<Player> getPlayers() {
-    return this.players;
-  }
+class Toepen extends Game {
+  Toepen(List<Player> players) : super(players);
 
   bool ended() {
     for (Player player in players) {

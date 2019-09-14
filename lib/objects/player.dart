@@ -1,15 +1,15 @@
 class Player {
   final String _name;
-  int _score = 0;
-  int _totalScore = 0;
-  List<int> _scoreList = [];
+  int _toepenScore = 0;
+  int _totalDuizendenScore = 0;
+  List<int> _duizendenScoreList = [];
 
   Player(this._name);
 
   void changeScoreBy(int change) {
-    int newScore = _score + change;
+    int newScore = _toepenScore + change;
     if (newScore >= -5 && newScore <= 10) {
-      _score = newScore;
+      _toepenScore = newScore;
     }
   }
 
@@ -18,30 +18,30 @@ class Player {
   }
 
   int getScore() {
-    return this._score;
+    return this._toepenScore;
   }
 
   void setScore(int score) {
-    this._score = score;
+    this._toepenScore = score;
   }
 
   int getTotalScore() {
-    return this._totalScore;
+    return this._totalDuizendenScore;
   }
 
   void setTotalScore(int score) {
-    this._totalScore = score;
+    this._totalDuizendenScore = score;
   }
 
   List<int> getScoreList() {
-    return this._scoreList;
+    return this._duizendenScoreList;
   }
 
   void setScoreList(List<int> scoreList) {
-    this._scoreList = scoreList;
+    this._duizendenScoreList = scoreList;
   }
 
   void addToScoreList(int score) {
-    this._scoreList.add(score);
+    this._duizendenScoreList.add(score);
   }
 }
