@@ -5,34 +5,45 @@ class ToepenPointsListItem extends StatelessWidget {
   static const _kFontFam = 'MyFlutterApp';
 
   final Player _player;
+  final bool _isDealer;
   final void Function(Player, int) _updateScore;
-
-  ToepenPointsListItem(this._player, this._updateScore);
+  final void Function(Player) _setDealer;
+  ToepenPointsListItem(
+      this._player, this._isDealer, this._updateScore, this._setDealer);
 
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
-      Container(
-          width: 120.0,
-          padding: EdgeInsets.all(13.0),
-          child: Text(_player.getName(),
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: TextStyle(color: Colors.black, fontSize: 20.0)),
-          decoration: const BoxDecoration(
-            border: Border(
-              right: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
-            ),
-          )),
+      GestureDetector(
+          onLongPress: () => this._setDealer(this._player),
+          child: Container(
+              width: 120.0,
+              padding: EdgeInsets.all(13.0),
+              child: Row(
+                children: <Widget>[
+                  this._isDealer
+                      ? Icon(Icons.arrow_right, color: Colors.red)
+                      : Container(),
+                  Expanded(
+                      child: Text(_player.getName(),
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 20.0))),
+                ],
+              ),
+              decoration: const BoxDecoration(
+                border: Border(
+                  right: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
+                ),
+              ))),
       Container(
           width: 60.0,
+          padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: _player.getScore() >= 9
-                  ? Colors.red
-                  : Colors.transparent),
-          padding: EdgeInsets.symmetric(vertical: 12.0),
+              color: _player.getScore() >= 9 ? Colors.red : Colors.transparent),
           child: Text(_player.getScore().toString(),
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.black, fontSize: 20.0))),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toep_app/animations/listbloc.dart';
 
-class ItemEffect extends StatefulWidget{
+class ItemEffect extends StatefulWidget {
   final int position;
   final Widget child;
   final Duration duration;
@@ -12,7 +12,6 @@ class ItemEffect extends StatefulWidget{
 class _ItemEffect extends State<ItemEffect> with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _offsetFloat;
-
 
   @override
   void initState() {
@@ -27,14 +26,21 @@ class _ItemEffect extends State<ItemEffect> with TickerProviderStateMixin {
         .animate(_controller);
   }
 
-    @override
-    Widget build(BuildContext context){
-      return new StreamBuilder(stream: new ListBloc().listenAnimation, initialData: -1, builder: (context, AsyncSnapshot<int> snapshot){
-        if(snapshot.data >= widget.position && snapshot.data > -1) _controller.forward();
-        return SlideTransition(position: _offsetFloat, child:
-          widget.child
-        );
-      });
-    }
-  
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new StreamBuilder(
+        stream: new ListBloc().listenAnimation,
+        initialData: -1,
+        builder: (context, AsyncSnapshot<int> snapshot) {
+          if (snapshot.data >= widget.position && snapshot.data > -1)
+            _controller.forward();
+          return SlideTransition(position: _offsetFloat, child: widget.child);
+        });
+  }
 }

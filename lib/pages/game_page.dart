@@ -3,8 +3,8 @@ import 'package:toep_app/objects/duizenden.dart';
 import 'package:toep_app/objects/toepen.dart';
 import 'package:toep_app/pages/duizenden_page.dart';
 import 'package:toep_app/pages/toepen_page.dart';
-import 'package:toep_app/ui/custom_button.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
+import 'package:toep_app/ui/custom_button.dart';
 
 import '../objects/player.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,10 +25,10 @@ class GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CustomAppBar("Kaartspel", widget._toolbarHeight, true),
+        appBar: CustomAppBar("Kaartspel", context, true),
         body: Container(
             width: double.infinity,
-            color: Colors.red,
+            decoration: BoxDecoration(color: Colors.red),
             child: Stack(children: <Widget>[
               Positioned(
                   top: ((MediaQuery.of(context).size.height -

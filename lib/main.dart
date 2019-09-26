@@ -9,11 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Spiens App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.red, fontFamily: 'Montserrat'),
       home: PlayersPage(),
-      routes: <String, WidgetBuilder>{
-        // '/home': (BuildContext context) => HomePage(),
-      },
     );
   }
 }

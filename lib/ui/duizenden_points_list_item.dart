@@ -4,8 +4,7 @@ import '../objects/player.dart';
 class DuizendenPointsListItem extends StatelessWidget {
   final Player _player;
   final TextEditingController _textEditingController = TextEditingController();
-
-  void Function() _updateScore;
+  final void Function() _updateScore;
 
   DuizendenPointsListItem(this._player, this._updateScore);
 
@@ -38,7 +37,7 @@ class DuizendenPointsListItem extends StatelessWidget {
       Container(
           constraints: BoxConstraints(maxHeight: 250.0),
           width: 120.0,
-          padding: EdgeInsets.fromLTRB(13, 0, 13, 13),
+          padding: EdgeInsets.all(13),
           child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
@@ -73,11 +72,11 @@ class DuizendenPointsListItem extends StatelessWidget {
               suffixIcon: IconButton(
                 icon: Icon(Icons.add, color: Colors.red),
                 iconSize: 20.0,
-                onPressed: () => {
+                onPressed: () {
                   this._player.addToScoreList(
-                      int.parse(this._textEditingController.text)),
-                  _updateScore(),
-                  FocusScope.of(context).requestFocus(new FocusNode())
+                      int.parse(this._textEditingController.text));
+                  _updateScore();
+                  FocusScope.of(context).requestFocus(new FocusNode());
                 },
               ),
               border: InputBorder.none,

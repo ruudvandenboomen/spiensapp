@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:toep_app/ui/custom_button.dart';
 
 class AddPlayerWidget extends StatelessWidget {
   final TextEditingController _textEditingController;
@@ -23,8 +22,15 @@ class AddPlayerWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         hintText: 'Speler Naam',
-                        suffixIcon: CustomButtonWidget("+", Colors.red,
-                            Colors.white, this._onTap, minWidth: 100),
+                        suffixIcon: ButtonTheme(
+                            height: 50,
+                            minWidth: 100,
+                            child: RaisedButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0)),
+                                child: Icon(Icons.add, color: Colors.white),
+                                color: Colors.red,
+                                onPressed: () => this._onTap)),
                         border: InputBorder.none,
                       ),
                       onTap: this._onTap,

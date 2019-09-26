@@ -9,7 +9,8 @@ import 'package:flutter/cupertino.dart';
 
 class DuizendenPage extends StatefulWidget {
   final Duizenden game;
-  DuizendenPage(this.game);
+  final scoreChangedPlayers = new Set();
+s  DuizendenPage(this.game);
   @override
   State<StatefulWidget> createState() => DuizendenPageState();
 }
@@ -35,8 +36,8 @@ class DuizendenPageState extends State<DuizendenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CustomAppBar("Duizenden", 100, true),
-        body: Stack(alignment: Alignment.center, children: <Widget>[
+        appBar: CustomAppBar("Duizenden", context, true),
+        body: Stack(children: <Widget>[
           SingleChildScrollView(
               child: Container(
                   padding: EdgeInsets.fromLTRB(20, 20, 20, 50),
@@ -45,7 +46,6 @@ class DuizendenPageState extends State<DuizendenPage> {
                       children: <Widget>[
                         Container(
                             height: 500,
-                            width: 500,
                             child: ListView.separated(
                                 scrollDirection: Axis.horizontal,
                                 separatorBuilder:
@@ -62,11 +62,15 @@ class DuizendenPageState extends State<DuizendenPage> {
                                   return DuizendenPointsListItem(
                                       widget.game.getPlayers()[index], update);
                                 })),
-                        Visibility(
-                            visible: buttonVisible(),
-                            child: CustomButtonWidget("Nieuw potje", Colors.red,
-                                Colors.white, () => newGame()))
                       ]))),
+          Container(
+              alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
+              child: Visibility(
+                  visible: buttonVisible(),
+                  child: CustomButtonWidget(
+                      "Nieuw potje", Colors.red, Colors.white, () => newGame(),
+                      minWidth: MediaQuery.of(context).size.width - 40)))
         ]));
   }
 }

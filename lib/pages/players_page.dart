@@ -18,12 +18,11 @@ class PlayersPageState extends State<PlayersPage> {
   final myController = TextEditingController();
   List<Player> players = [];
   bool _readyButtonVisible = false;
-  Duration _duration = Duration(milliseconds: 200);
 
   @override
   void dispose() {
-    myController.dispose();
     super.dispose();
+    myController.dispose();
   }
 
   void addPlayer() {
@@ -63,14 +62,14 @@ class PlayersPageState extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: CustomAppBar("Spelers", context, false),
         floatingActionButton: AnimatedOpacity(
             opacity: _readyButtonVisible ? 1.0 : 0.0,
-            duration: _duration,
+            duration: Duration(milliseconds: 250),
             child: FloatingActionButton(
                 child: Icon(Icons.arrow_forward),
                 onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
                     builder: (BuildContext context) => GamePage(players))))),
-        appBar: CustomAppBar("Spelers", 100, false),
         body: Padding(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
             child: Column(
@@ -81,7 +80,7 @@ class PlayersPageState extends State<PlayersPage> {
                 Expanded(
                   child: Container(
                       child: ListViewEffect(
-                          duration: _duration,
+                          duration: Duration(milliseconds: 150),
                           children: players
                               .map((s) => _buildWidgetExample(s))
                               .toList())),
