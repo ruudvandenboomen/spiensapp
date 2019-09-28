@@ -4,9 +4,12 @@ import '../objects/player.dart';
 class DuizendenPointsListItem extends StatelessWidget {
   final Player _player;
   final TextEditingController _textEditingController = TextEditingController();
-  final void Function() _updateScore;
+  final bool _isDealer;
+  final void Function(Player) _updateScore;
+  final void Function(Player) _setDealer;
 
-  DuizendenPointsListItem(this._player, this._updateScore);
+  DuizendenPointsListItem(
+      this._player, this._updateScore, this._isDealer, this._setDealer);
 
   int getTotalScore() {
     int total = 0;
@@ -21,19 +24,32 @@ class DuizendenPointsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(children: <Widget>[
-      Container(
-          width: 120.0,
-          padding: EdgeInsets.all(13.0),
-          child: Text(_player.getName(),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black, fontSize: 20.0)),
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
-            ),
-          )),
+      GestureDetector(
+          onLongPress: () => this._setDealer(this._player),
+          child: Container(
+              width: 120.0,
+              padding: EdgeInsets.fromLTRB(0, 13, 13, 13),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    this._isDealer
+                        ? Icon(Icons.arrow_right, color: Colors.red)
+                        : Container(),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(_player.getName(),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 20.0)),
+                    )
+                  ]),
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
+                ),
+              ))),
       Container(
           constraints: BoxConstraints(maxHeight: 250.0),
           width: 120.0,
@@ -72,11 +88,10 @@ class DuizendenPointsListItem extends StatelessWidget {
               suffixIcon: IconButton(
                 icon: Icon(Icons.add, color: Colors.red),
                 iconSize: 20.0,
-                onPressed: () {
+                onPressed: () => {
                   this._player.addToScoreList(
-                      int.parse(this._textEditingController.text));
-                  _updateScore();
-                  FocusScope.of(context).requestFocus(new FocusNode());
+                      int.parse(this._textEditingController.text)),
+                  _updateScore(this._player),
                 },
               ),
               border: InputBorder.none,

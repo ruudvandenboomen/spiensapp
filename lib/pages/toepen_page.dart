@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
-
 import '../ui/toepen_points_list_item.dart';
 import '../objects/player.dart';
 import '../objects/toepen.dart';
 
 class ToepenPage extends StatefulWidget {
   final Toepen game;
-  final scoreChangedPlayers = new Set();
+  final scoreChangedPlayers = Set();
   ToepenPage(this.game);
 
   @override
@@ -19,18 +18,10 @@ class ToepenPageState extends State<ToepenPage> {
   bool buttonVisible = false;
 
   void update(Player player, int change) {
-    player.changeScoreBy(change);
-    List<Player> players = widget.game.getPlayers();
-
+    widget.game.updateScore(player, change);
     if (widget.game.ended()) {
       buttonVisible = true;
     } else {
-      if (change > 0) widget.scoreChangedPlayers.add(player);
-      if (widget.scoreChangedPlayers.length == (players.length - 1)) {
-        widget.game.setDealer(players[
-            (players.indexOf(widget.game.getDealer()) + 1) % players.length]);
-        widget.scoreChangedPlayers.clear();
-      }
       buttonVisible = false;
     }
     this.setState(() {});
