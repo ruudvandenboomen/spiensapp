@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toep_app/data/repository.dart';
 import 'package:toep_app/objects/duizenden.dart';
 import 'package:toep_app/objects/player.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
 import 'package:toep_app/ui/duizenden_points_list_item.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:toep_app/util/find_closest_number.dart';
 
 class DuizendenPage extends StatefulWidget {
   final Duizenden game;
@@ -25,25 +23,15 @@ class DuizendenPageState extends State<DuizendenPage> {
   }
 
   void newGame() {
-    var scores = widget.game
-        .getPlayers()
-        .map((player) => player.getTotalScore())
-        .toList();
-    int closest = FindClosestNumber.findClosest(scores, 1000);
-
     for (Player player in widget.game.getPlayers()) {
-      Repository.get().saveScore(player.getName(), "Duizenden",
-          player.getTotalScore() == closest ? 1 : 0);
       player.setTotalScore(0);
       player.setScoreList([]);
     }
 
-    widget.game.setDealer(widget.game.players.first);
     this.setState(() {});
   }
 
   void setDealer(Player player) {
-    widget.game.setDealer(player);
     scoreChangedPlayers.clear();
     this.setState(() {});
   }
@@ -52,7 +40,7 @@ class DuizendenPageState extends State<DuizendenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CustomAppBar("Duizenden", context, true, false),
+        appBar: CustomAppBar("Duizenden", context, true),
         body: Stack(children: <Widget>[
           SingleChildScrollView(
               child: Container(
@@ -76,11 +64,7 @@ class DuizendenPageState extends State<DuizendenPage> {
                                 itemCount: widget.game.getPlayers().length,
                                 itemBuilder: (context, index) {
                                   return DuizendenPointsListItem(
-                                      widget.game.getPlayers()[index],
-                                      update,
-                                      widget.game.getPlayers()[index] ==
-                                          widget.game.getDealer(),
-                                      setDealer);
+                                      widget.game.getPlayers()[index], update);
                                 })),
                       ]))),
           Container(

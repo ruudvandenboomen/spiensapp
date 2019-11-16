@@ -4,12 +4,9 @@ import '../objects/player.dart';
 class DuizendenPointsListItem extends StatelessWidget {
   final Player _player;
   final TextEditingController _textEditingController = TextEditingController();
-  final bool _isDealer;
   final void Function(Player) _updateScore;
-  final void Function(Player) _setDealer;
 
-  DuizendenPointsListItem(
-      this._player, this._updateScore, this._isDealer, this._setDealer);
+  DuizendenPointsListItem(this._player, this._updateScore);
 
   int getTotalScore() {
     int total = 0;
@@ -25,16 +22,12 @@ class DuizendenPointsListItem extends StatelessWidget {
     return SingleChildScrollView(
         child: Column(children: <Widget>[
       GestureDetector(
-          onLongPress: () => this._setDealer(this._player),
           child: Container(
               width: 120.0,
               padding: EdgeInsets.fromLTRB(0, 13, 13, 13),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    this._isDealer
-                        ? Icon(Icons.arrow_right, color: Colors.red)
-                        : Container(),
                     Align(
                       alignment: Alignment.center,
                       child: Text(_player.getName(),

@@ -19,7 +19,6 @@ class Toepen extends Game {
     player.changeScoreBy(change);
     if (change > 0 && player.getScore() < 10) scoreChangedPlayers.add(player);
     if (scoreChangedPlayers.length == (players.length - 1)) {
-      dealer = players[(players.indexOf(dealer) + 1) % players.length];
       scoreChangedPlayers.clear();
     }
   }

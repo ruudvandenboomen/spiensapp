@@ -62,7 +62,7 @@ class PlayersPageState extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("Spelers", context, false, true),
+        appBar: CustomAppBar("Spelers", context, false),
         floatingActionButton: AnimatedOpacity(
             opacity: _readyButtonVisible ? 1.0 : 0.0,
             duration: Duration(milliseconds: 250),

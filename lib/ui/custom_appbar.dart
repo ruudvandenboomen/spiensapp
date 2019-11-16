@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:toep_app/pages/scoreboard_page.dart';
 
 class CustomAppBar extends AppBar {
-  CustomAppBar(_text, _context, _leadingButton, settings)
+  CustomAppBar(_text, _context, _leadingButton)
       : super(
-            actions: settings
-                ? [
-                    IconButton(
-                      icon: Icon(Icons.settings),
-                      onPressed: () => Navigator.of(_context).push(
-                          CupertinoPageRoute(
-                              builder: (BuildContext context) =>
-                                  ScoreBoardPage())),
-                    )
-                  ]
-                : null,
             elevation: 0.0,
             title: Text(_text,
                 style: TextStyle(

@@ -5,25 +5,18 @@ class ToepenPointsListItem extends StatelessWidget {
   static const _kFontFam = 'MyFlutterApp';
 
   final Player _player;
-  final bool _isDealer;
   final void Function(Player, int) _updateScore;
-  final void Function(Player) _setDealer;
-  ToepenPointsListItem(
-      this._player, this._isDealer, this._updateScore, this._setDealer);
+  ToepenPointsListItem(this._player, this._updateScore);
 
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
       GestureDetector(
-          onLongPress: () => this._setDealer(this._player),
           child: Container(
               width: 120.0,
               padding: EdgeInsets.all(13.0),
               child: Row(
                 children: <Widget>[
-                  this._isDealer
-                      ? Icon(Icons.arrow_right, color: Colors.red)
-                      : Container(),
                   Expanded(
                       child: Text(_player.getName(),
                           textAlign: TextAlign.center,
