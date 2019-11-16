@@ -3,11 +3,10 @@ import 'package:flutter_toast2018/flutter_toast2018.dart';
 import 'package:toep_app/animations/listview_effect.dart';
 import 'package:toep_app/pages/game_page.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
-
+import 'package:flutter/cupertino.dart';
 import '../ui/add_player_widget.dart';
 import '../ui/player_name_list_item.dart';
 import '../objects/player.dart';
-import 'package:flutter/cupertino.dart';
 
 class PlayersPage extends StatefulWidget {
   @override
@@ -16,7 +15,7 @@ class PlayersPage extends StatefulWidget {
 
 class PlayersPageState extends State<PlayersPage> {
   final myController = TextEditingController();
-  List<Player> players = [];
+  final List<Player> players = [];
   bool _readyButtonVisible = false;
 
   @override
@@ -29,7 +28,8 @@ class PlayersPageState extends State<PlayersPage> {
     String name = myController.text;
     if (players.indexWhere((player) => player.getName().toString() == name) >=
         0) {
-      FlutterToast2018.toast('Name already added', ToastDuration.short);
+      FlutterToast2018.toast(
+          'Je hebt deze naam al toegevoegd', ToastDuration.short);
     } else if (name != "") {
       players.add(Player(name));
       myController.text = "";
@@ -62,7 +62,7 @@ class PlayersPageState extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("Spelers", context, false),
+        appBar: CustomAppBar("Spelers", context, false, true),
         floatingActionButton: AnimatedOpacity(
             opacity: _readyButtonVisible ? 1.0 : 0.0,
             duration: Duration(milliseconds: 250),

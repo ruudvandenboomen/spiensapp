@@ -18,8 +18,7 @@ class Duizenden extends Game {
   void updateScore(Player player) {
     scoreChangedPlayers.add(player);
     if (scoreChangedPlayers.length == players.length) {
-      dealer =
-          players[(players.indexOf(dealer) + 1) % players.length];
+      dealer = players[(players.indexOf(dealer) + 1) % players.length];
       scoreChangedPlayers.clear();
     }
   }

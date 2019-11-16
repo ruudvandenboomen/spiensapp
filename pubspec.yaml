@@ -21,11 +21,11 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_toast2018: ^0.0.1
   rxdart: ^0.22.1+1
+  http: ^0.12.0+2
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

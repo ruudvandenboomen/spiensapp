@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:toep_app/data/repository.dart';
 import 'package:toep_app/objects/duizenden.dart';
 import 'package:toep_app/objects/player.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
 import 'package:toep_app/ui/duizenden_points_list_item.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:toep_app/util/find_closest_number.dart';
 
 class DuizendenPage extends StatefulWidget {
   final Duizenden game;
-  final scoreChangedPlayers = Set();
   DuizendenPage(this.game);
 
   @override
@@ -16,23 +17,34 @@ class DuizendenPage extends StatefulWidget {
 }
 
 class DuizendenPageState extends State<DuizendenPage> {
+  final scoreChangedPlayers = Set();
+
   void update(Player player) {
     widget.game.updateScore(player);
     this.setState(() {});
   }
 
   void newGame() {
+    var scores = widget.game
+        .getPlayers()
+        .map((player) => player.getTotalScore())
+        .toList();
+    int closest = FindClosestNumber.findClosest(scores, 1000);
+
     for (Player player in widget.game.getPlayers()) {
+      Repository.get().saveScore(player.getName(), "Duizenden",
+          player.getTotalScore() == closest ? 1 : 0);
       player.setTotalScore(0);
       player.setScoreList([]);
     }
+
     widget.game.setDealer(widget.game.players.first);
     this.setState(() {});
   }
 
   void setDealer(Player player) {
     widget.game.setDealer(player);
-    widget.scoreChangedPlayers.clear();
+    scoreChangedPlayers.clear();
     this.setState(() {});
   }
 
@@ -40,7 +52,7 @@ class DuizendenPageState extends State<DuizendenPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CustomAppBar("Duizenden", context, true),
+        appBar: CustomAppBar("Duizenden", context, true, false),
         body: Stack(children: <Widget>[
           SingleChildScrollView(
               child: Container(

@@ -5,16 +5,18 @@ import 'package:toep_app/pages/duizenden_page.dart';
 import 'package:toep_app/pages/toepen_page.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
-
 import '../objects/player.dart';
 import 'package:flutter/cupertino.dart';
 
 class GamePage extends StatefulWidget {
   final List<Player> _players;
-  GamePage(this._players);
+  final DuizendenPage duizendenPage;
   final double _buttonWidth = 250;
   final double _toolbarHeight = 100;
   final double _buttonAndPaddingHeight = 110;
+
+  GamePage(this._players)
+      : this.duizendenPage = DuizendenPage(Duizenden(_players));
 
   @override
   State<StatefulWidget> createState() => GamePageState();
@@ -25,7 +27,7 @@ class GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CustomAppBar("Kaartspel", context, true),
+        appBar: CustomAppBar("Kaartspel", context, true, false),
         body: Container(
             width: double.infinity,
             decoration: BoxDecoration(color: Colors.red),
@@ -60,8 +62,7 @@ class GamePageState extends State<GamePage> {
                             Colors.red,
                             () => Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (BuildContext context) =>
-                                    DuizendenPage(
-                                        Duizenden(this.widget._players)))),
+                                    widget.duizendenPage)),
                             minWidth: 250),
                       ]))
             ])));

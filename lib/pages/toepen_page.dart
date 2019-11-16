@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:toep_app/data/repository.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
 import '../ui/toepen_points_list_item.dart';
 import '../objects/player.dart';
 import '../objects/toepen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ToepenPage extends StatefulWidget {
   final Toepen game;
@@ -33,9 +36,12 @@ class ToepenPageState extends State<ToepenPage> {
     this.setState(() {});
   }
 
-  void newGame() {
+  void newGame() async {
     List<Player> players = widget.game.getPlayers();
+    players.sort((a, b) => a.getScore().compareTo(b.getScore()));
     for (Player player in players) {
+      Repository.get().saveScore(
+          player.getName(), "Toepen", players.first == player ? 1 : 0);
       player.setScore(0);
     }
     widget.game.setDealer(players.first);
@@ -43,12 +49,13 @@ class ToepenPageState extends State<ToepenPage> {
     widget.scoreChangedPlayers.clear();
     this.setState(() {});
   }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CustomAppBar("Toepen", context, true),
+        appBar: CustomAppBar("Toepen", context, true, false),
         body: Stack(alignment: Alignment.center, children: <Widget>[
           Container(
               padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),

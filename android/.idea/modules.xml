@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android.iml" filepath="$PROJECT_DIR$/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_toast2018-0.0.1/android/flutter_toast2018.iml" filepath="$PROJECT_DIR$/../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_toast2018-0.0.1/android/flutter_toast2018.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.3+4/android/shared_preferences.iml" filepath="$PROJECT_DIR$/../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.3+4/android/shared_preferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.1.6+5/android/sqflite.iml" filepath="$PROJECT_DIR$/../../flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.1.6+5/android/sqflite.iml" />
+    </modules>
+  </component>
+</project>
