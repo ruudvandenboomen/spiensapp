@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 //https://pub.dartlang.org/packages/rxdart
 
@@ -32,6 +33,6 @@ class ListBloc {
 
   dispose() {
     _listBloc = null;
-    _positionItem.close();
+    // _positionItem.close();
   }
 }

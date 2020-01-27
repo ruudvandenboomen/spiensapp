@@ -70,7 +70,8 @@ class PlayersPageState extends State<PlayersPage> {
                 child: Icon(Icons.arrow_forward),
                 onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
                     builder: (BuildContext context) => GamePage(players))))),
-        body: Padding(
+        body: Container(
+            color: Theme.of(context).canvasColor,
             padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

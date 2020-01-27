@@ -30,7 +30,7 @@ class GamePageState extends State<GamePage> {
         appBar: CustomAppBar("Kaartspel", context, true),
         body: Container(
             width: double.infinity,
-            decoration: BoxDecoration(color: Colors.red),
+            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
             child: Stack(children: <Widget>[
               Positioned(
                   top: ((MediaQuery.of(context).size.height -
@@ -48,7 +48,7 @@ class GamePageState extends State<GamePage> {
                             child: CustomButtonWidget(
                               "Toepen",
                               Colors.white,
-                              Colors.red,
+                              Theme.of(context).accentColor,
                               () => Navigator.of(context).push(
                                   CupertinoPageRoute(
                                       builder: (BuildContext context) =>
@@ -59,7 +59,7 @@ class GamePageState extends State<GamePage> {
                         CustomButtonWidget(
                             "Duizenden",
                             Colors.white,
-                            Colors.red,
+                            Theme.of(context).accentColor,
                             () => Navigator.of(context).push(CupertinoPageRoute(
                                 builder: (BuildContext context) =>
                                     widget.duizendenPage)),

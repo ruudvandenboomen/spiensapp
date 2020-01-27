@@ -5,6 +5,7 @@ import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
 import 'package:toep_app/ui/duizenden_points_list_item.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:toep_app/util/is_dark.dart';
 
 class DuizendenPage extends StatefulWidget {
   final Duizenden game;
@@ -57,7 +58,9 @@ class DuizendenPageState extends State<DuizendenPage> {
                                         Container(
                                           height: 1.0,
                                           width: 2.0,
-                                          color: Colors.black,
+                                          color: DarkMode(context).isEnabled
+                                              ? Colors.white
+                                              : Colors.black,
                                           margin: const EdgeInsets.only(
                                               top: 10.0, bottom: 10.0),
                                         ),
@@ -73,7 +76,10 @@ class DuizendenPageState extends State<DuizendenPage> {
               child: Visibility(
                   visible: widget.game.ended(),
                   child: CustomButtonWidget(
-                      "Nieuw potje", Colors.red, Colors.white, () => newGame(),
+                      "Nieuw potje",
+                      Theme.of(context).primaryColor,
+                      Colors.white,
+                      () => newGame(),
                       minWidth: MediaQuery.of(context).size.width - 40)))
         ]));
   }

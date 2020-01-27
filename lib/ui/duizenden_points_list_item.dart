@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toep_app/util/is_dark.dart';
 import '../objects/player.dart';
 
 class DuizendenPointsListItem extends StatelessWidget {
@@ -17,6 +18,11 @@ class DuizendenPointsListItem extends StatelessWidget {
     return total;
   }
 
+  addScore() {
+    this._player.addToScoreList(int.parse(this._textEditingController.text));
+    _updateScore(this._player);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,23 +30,20 @@ class DuizendenPointsListItem extends StatelessWidget {
       GestureDetector(
           child: Container(
               width: 120.0,
-              padding: EdgeInsets.fromLTRB(0, 13, 13, 13),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(_player.getName(),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          textAlign: TextAlign.center,
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 20.0)),
-                    )
-                  ]),
-              decoration: const BoxDecoration(
+              padding: EdgeInsets.all(13),
+              alignment: Alignment.center,
+              child: Text(_player.getName(),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.body1),
+              decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
+                  bottom: BorderSide(
+                      width: 2.0,
+                      color: DarkMode(context).isEnabled
+                          ? Colors.white
+                          : Colors.black),
                 ),
               ))),
       Container(
@@ -54,17 +57,21 @@ class DuizendenPointsListItem extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Text(this._player.getScoreList()[index].toString(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.black, fontSize: 20.0));
+                    style: Theme.of(context).textTheme.body1);
               })),
       Container(
           width: 90.0,
-          padding: EdgeInsets.all(13.0),
+          padding: EdgeInsets.all(13),
           child: Text(getTotalScore().toString(),
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black, fontSize: 20.0)),
-          decoration: const BoxDecoration(
+              style: Theme.of(context).textTheme.body1),
+          decoration: BoxDecoration(
             border: Border(
-              top: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
+              top: BorderSide(
+                  width: 2.0,
+                  color: DarkMode(context).isEnabled
+                      ? Colors.white
+                      : Colors.black),
             ),
           )),
       Container(
@@ -72,26 +79,19 @@ class DuizendenPointsListItem extends StatelessWidget {
           child: TextField(
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
+            onEditingComplete: () => addScore(),
             decoration: InputDecoration(
               hintText: 'punten',
-              hintStyle: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black,
-                  fontStyle: FontStyle.italic),
+              hintStyle: Theme.of(context).textTheme.body2,
               suffixIcon: IconButton(
-                icon: Icon(Icons.add, color: Colors.red),
-                iconSize: 20.0,
-                onPressed: () => {
-                  this._player.addToScoreList(
-                      int.parse(this._textEditingController.text)),
-                  _updateScore(this._player),
-                },
+                icon: Icon(Icons.add, color: Theme.of(context).accentColor),
+                onPressed: () => addScore(),
               ),
               border: InputBorder.none,
             ),
             controller: _textEditingController,
             textCapitalization: TextCapitalization.words,
-            style: TextStyle(fontSize: 20.0, color: Colors.black),
+            style: Theme.of(context).textTheme.body1,
           ))
     ]));
   }

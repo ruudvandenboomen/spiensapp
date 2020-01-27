@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
+import 'package:toep_app/util/is_dark.dart';
 import '../ui/toepen_points_list_item.dart';
 import '../objects/player.dart';
 import '../objects/toepen.dart';
@@ -54,7 +55,7 @@ class ToepenPageState extends State<ToepenPage> {
                                 (BuildContext context, int index) => Container(
                                       height: 2.0,
                                       width: 1.0,
-                                      color: Colors.black,
+                                      color: DarkMode(context).isEnabled ? Colors.white : Colors.black,
                                       margin: const EdgeInsets.only(
                                           left: 10.0, right: 10.0),
                                     ),
@@ -66,7 +67,7 @@ class ToepenPageState extends State<ToepenPage> {
                             })),
                     Visibility(
                         visible: buttonVisible,
-                        child: CustomButtonWidget("Nieuw potje", Colors.red,
+                        child: CustomButtonWidget("Nieuw potje", Theme.of(context).primaryColor,
                             Colors.white, () => this.newGame()))
                   ])),
         ]));

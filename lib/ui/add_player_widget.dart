@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toep_app/util/is_dark.dart';
 
 class AddPlayerWidget extends StatelessWidget {
   final TextEditingController _textEditingController;
@@ -16,12 +17,18 @@ class AddPlayerWidget extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
                 child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 2),
+                        border: Border.all(
+                            color: DarkMode(context).isEnabled
+                                ? Colors.white
+                                : Colors.black,
+                            width: 2),
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                     child: TextField(
+                      onEditingComplete: () => this._onTap(),
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         hintText: 'Speler Naam',
+                        hintStyle: TextStyle(color: Colors.white70),
                         suffixIcon: ButtonTheme(
                             height: 50,
                             minWidth: 100,
@@ -29,14 +36,13 @@ class AddPlayerWidget extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(30.0)),
                                 child: Icon(Icons.add, color: Colors.white),
-                                color: Colors.red,
-                                onPressed: () => this._onTap)),
+                                color: Theme.of(context).accentColor,
+                                onPressed: () => this._onTap())),
                         border: InputBorder.none,
                       ),
-                      onTap: this._onTap,
                       controller: _textEditingController,
                       textCapitalization: TextCapitalization.words,
-                      style: TextStyle(fontSize: 20.0, color: Colors.black),
+                      style: Theme.of(context).textTheme.body1,
                     )))),
       ],
     );

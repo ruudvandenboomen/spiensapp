@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toep_app/util/is_dark.dart';
 import '../objects/player.dart';
 
 class ToepenPointsListItem extends StatelessWidget {
@@ -22,13 +23,14 @@ class ToepenPointsListItem extends StatelessWidget {
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
-                          style:
-                              TextStyle(color: Colors.black, fontSize: 20.0))),
+                          style: Theme.of(context).textTheme.body1))
                 ],
               ),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 border: Border(
-                  right: BorderSide(width: 2.0, color: Color(0xFFFF000000)),
+                  right: BorderSide(
+                      width: 2.0,
+                      color: DarkMode(context).isEnabled ? Colors.white : Colors.black),
                 ),
               ))),
       Container(
@@ -36,22 +38,24 @@ class ToepenPointsListItem extends StatelessWidget {
           padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: _player.getScore() >= 9 ? Colors.red : Colors.transparent),
+              color: _player.getScore() >= 9
+                  ? Theme.of(context).accentColor
+                  : Colors.transparent),
           child: Text(_player.getScore().toString(),
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.black, fontSize: 20.0))),
+              style: Theme.of(context).textTheme.body1)),
       Flexible(
           flex: 2,
           child:
               Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
             IconButton(
                 icon: Icon(IconData(0xe800, fontFamily: _kFontFam)),
-                color: Colors.red,
+                color: Theme.of(context).accentColor,
                 iconSize: 20.0,
                 onPressed: () => (_updateScore(_player, -1))),
             IconButton(
                 icon: Icon(IconData(0xe801, fontFamily: _kFontFam)),
-                color: Colors.red,
+                color: Theme.of(context).accentColor,
                 iconSize: 20.0,
                 onPressed: () => (_updateScore(_player, 1)))
           ]))
