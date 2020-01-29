@@ -74,13 +74,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_toast2018:
-    dependency: "direct main"
-    description:
-      name: flutter_toast2018
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1"
   http:
     dependency: "direct main"
     description:

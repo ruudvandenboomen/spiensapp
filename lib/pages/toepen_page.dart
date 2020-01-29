@@ -44,32 +44,49 @@ class ToepenPageState extends State<ToepenPage> {
         resizeToAvoidBottomPadding: false,
         appBar: CustomAppBar("Toepen", context, true),
         body: Stack(alignment: Alignment.center, children: <Widget>[
-          Container(
-              padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Expanded(
-                        child: ListView.separated(
-                            separatorBuilder:
-                                (BuildContext context, int index) => Container(
-                                      height: 2.0,
-                                      width: 1.0,
-                                      color: DarkMode(context).isEnabled ? Colors.white : Colors.black,
-                                      margin: const EdgeInsets.only(
-                                          left: 10.0, right: 10.0),
-                                    ),
-                            itemCount: widget.game.getPlayers().length,
-                            itemBuilder: (context, index) {
-                              return ToepenPointsListItem(
-                                  widget.game.getPlayers()[index],
-                                  update);
-                            })),
-                    Visibility(
-                        visible: buttonVisible,
-                        child: CustomButtonWidget("Nieuw potje", Theme.of(context).primaryColor,
-                            Colors.white, () => this.newGame()))
-                  ])),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                    child: ListView.separated(
+                        separatorBuilder: (BuildContext context, int index) =>
+                            Container(
+                              height: 2.0,
+                              width: 1.0,
+                              color: DarkMode(context).isEnabled
+                                  ? Colors.white
+                                  : Colors.black,
+                              margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                            ),
+                        itemCount: widget.game.getPlayers().length,
+                        itemBuilder: (context, index) {
+                          var toepenListItem = ToepenPointsListItem(
+                              widget.game.getPlayers()[index], update);
+                          if (index == 0) {
+                            return Container(
+                                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                                child: toepenListItem);
+                          } else if (index ==
+                              widget.game.getPlayers().length - 1) {
+                            return Container(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                                child: toepenListItem);
+                          } else {
+                            return toepenListItem;
+                          }
+                        })),
+              ]),
+          Positioned(
+              left: 20,
+              bottom: 20,
+              width: MediaQuery.of(context).size.width - 40,
+              child: Visibility(
+                  visible: buttonVisible,
+                  child: CustomButtonWidget(
+                      "Nieuw potje",
+                      Theme.of(context).primaryColor,
+                      Colors.white,
+                      () => this.newGame())))
         ]));
   }
 }

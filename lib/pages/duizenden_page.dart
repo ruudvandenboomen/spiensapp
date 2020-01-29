@@ -45,7 +45,7 @@ class DuizendenPageState extends State<DuizendenPage> {
         body: Stack(children: <Widget>[
           SingleChildScrollView(
               child: Container(
-                  padding: EdgeInsets.fromLTRB(20, 20, 20, 50),
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 50),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
@@ -66,8 +66,24 @@ class DuizendenPageState extends State<DuizendenPage> {
                                         ),
                                 itemCount: widget.game.getPlayers().length,
                                 itemBuilder: (context, index) {
-                                  return DuizendenPointsListItem(
-                                      widget.game.getPlayers()[index], update);
+                                  var duizendenListItem =
+                                      DuizendenPointsListItem(
+                                          widget.game.getPlayers()[index],
+                                          update);
+                                  if (index == 0) {
+                                    return Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                        child: duizendenListItem);
+                                  } else if (index ==
+                                      widget.game.getPlayers().length - 1) {
+                                    return Container(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 0, 20, 0),
+                                        child: duizendenListItem);
+                                  } else {
+                                    return duizendenListItem;
+                                  }
                                 })),
                       ]))),
           Container(
