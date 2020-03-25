@@ -39,25 +39,43 @@ class DuizendenPointsListItem extends StatelessWidget {
                   style: Theme.of(context).textTheme.body1),
               decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(
-                      width: 2.0,
-                      color: DarkMode(context).isEnabled
-                          ? Colors.white
-                          : Colors.black),
-                ),
+                    bottom: BorderSide(
+                        width: 2.0,
+                        color: DarkMode(context).isEnabled
+                            ? Colors.white
+                            : Colors.black)),
               ))),
       Container(
+          padding: this._player.getScoreList().length > 0
+              ? null
+              : EdgeInsets.fromLTRB(0, 13, 0, 0),
           constraints: BoxConstraints(maxHeight: 250.0),
           width: 120.0,
-          padding: EdgeInsets.all(13),
           child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemCount: this._player.getScoreList().length,
               itemBuilder: (context, index) {
-                return Text(this._player.getScoreList()[index].toString(),
+                var scoreText = Text(
+                    this._player.getScoreList()[index].toString(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.body1);
+                if (index == 0 &&
+                    index == this._player.getScoreList().length - 1) {
+                  return Container(
+                      padding: EdgeInsets.fromLTRB(0, 13, 0, 13),
+                      child: scoreText);
+                } else if (index == 0) {
+                  return Container(
+                      padding: EdgeInsets.fromLTRB(0, 13, 0, 0),
+                      child: scoreText);
+                } else if (index == this._player.getScoreList().length - 1) {
+                  return Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 13),
+                      child: scoreText);
+                } else {
+                  return scoreText;
+                }
               })),
       Container(
           width: 90.0,

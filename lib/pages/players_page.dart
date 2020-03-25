@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_toast2018/flutter_toast2018.dart';
 import 'package:toep_app/animations/listview_effect.dart';
 import 'package:toep_app/pages/game_page.dart';
 import 'package:toep_app/ui/custom_appbar.dart';
@@ -14,44 +13,42 @@ class PlayersPage extends StatefulWidget {
 }
 
 class PlayersPageState extends State<PlayersPage> {
-  final myController = TextEditingController();
+  final nameInputEditingController = TextEditingController();
   final List<Player> players = [];
   bool _readyButtonVisible = false;
 
   @override
   void dispose() {
     super.dispose();
-    myController.dispose();
+    nameInputEditingController.dispose();
+  }
+
+  String checkPlayerNameValid() {
+    String playerName = nameInputEditingController.text;
+    if (players.indexWhere((player) =>
+            player.getName().toString().toLowerCase() == playerName.toLowerCase()) >=
+        0) {
+      return "Je hebt deze speler al toegevoegd";
+    } else if (playerName.isEmpty) {
+      return "Je kunt geen lege naam invullen";
+    }
+    return null;
   }
 
   void addPlayer() {
-    String name = myController.text;
-    if (players.indexWhere((player) => player.getName().toString() == name) >=
-        0) {
-      FlutterToast2018.toast(
-          'Je hebt deze naam al toegevoegd', ToastDuration.short);
-    } else if (name != "") {
-      players.add(Player(name));
-      myController.text = "";
-    }
+    players.add(Player(nameInputEditingController.text));
+    nameInputEditingController.clear();
     setButtonVisible();
-    this.setState(() {});
   }
 
   void removePlayer(int index) {
     players.removeAt(index);
     setButtonVisible();
-    this.setState(() {});
   }
 
   void setButtonVisible() {
-    if (players.length > 1) {
-      _readyButtonVisible = true;
-      setState(() {});
-    } else {
-      _readyButtonVisible = false;
-      setState(() {});
-    }
+    _readyButtonVisible = players.length > 1;
+    setState(() {});
   }
 
   Widget _buildWidgetExample(Player player) {
@@ -70,14 +67,14 @@ class PlayersPageState extends State<PlayersPage> {
                 child: Icon(Icons.arrow_forward),
                 onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
                     builder: (BuildContext context) => GamePage(players))))),
-        body: Container(
-            color: Theme.of(context).canvasColor,
-            padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+        body: Padding(
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                AddPlayerWidget(myController, () => addPlayer()),
+                AddPlayerWidget(
+                    nameInputEditingController, () => addPlayer(), () => checkPlayerNameValid()),
                 Expanded(
                   child: Container(
                       child: ListViewEffect(
