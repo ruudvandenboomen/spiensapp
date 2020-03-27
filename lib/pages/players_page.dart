@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:toep_app/animations/listview_effect.dart';
 import 'package:toep_app/pages/game_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:toep_app/ui/appbar/settings_appbar.dart';
-import 'package:toep_app/util/theme_changer.dart';
 import '../ui/add_player_widget.dart';
 import '../ui/player_name_list_item.dart';
 import '../objects/player.dart';
@@ -62,14 +60,23 @@ class PlayersPageState extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("Spelers", context, false),
+        appBar: SettingsAppBar("Spelers", context, false),
         floatingActionButton: AnimatedOpacity(
             opacity: _readyButtonVisible ? 1.0 : 0.0,
             duration: Duration(milliseconds: 250),
-            child: FloatingActionButton(
-                child: Icon(Icons.arrow_forward),
-                onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
-                    builder: (BuildContext context) => GamePage(players))))),
+            child: FloatingActionButton.extended(
+                label: Row(
+                  children: <Widget>[
+                    Text("Beginnen"),
+                    Icon(Icons.arrow_forward)
+                  ],
+                ),
+                icon: Container(),
+                onPressed: () {
+                  if (players.length > 1)
+                    Navigator.of(context).push(CupertinoPageRoute(
+                        builder: (BuildContext context) => GamePage(players)));
+                })),
         body: Padding(
             padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: Column(

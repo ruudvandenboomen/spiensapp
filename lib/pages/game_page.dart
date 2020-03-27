@@ -43,19 +43,16 @@ class GamePageState extends State<GamePage> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                            child: CustomButtonWidget(
-                              "Toepen",
-                              Colors.white,
-                              Theme.of(context).accentColor,
-                              () => Navigator.of(context).push(
-                                  CupertinoPageRoute(
-                                      builder: (BuildContext context) =>
-                                          ToepenPage(
-                                              Toepen(this.widget._players)))),
-                              minWidth: widget._buttonWidth,
-                            )),
+                        CustomButtonWidget(
+                          "Toepen",
+                          Colors.white,
+                          Theme.of(context).accentColor,
+                          () => Navigator.of(context).push(CupertinoPageRoute(
+                              builder: (BuildContext context) =>
+                                  ToepenPage(Toepen(this.widget._players)))),
+                          minWidth: widget._buttonWidth,
+                        ),
+                        Container(padding: EdgeInsets.fromLTRB(0, 0, 0, 10)),
                         CustomButtonWidget(
                             "Duizenden",
                             Colors.white,
