@@ -36,7 +36,7 @@ class DuizendenPointsListItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.body1),
+                  style: Theme.of(context).textTheme.bodyText1),
               decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
@@ -59,7 +59,7 @@ class DuizendenPointsListItem extends StatelessWidget {
                 var scoreText = Text(
                     this._player.getScoreList()[index].toString(),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.body1);
+                    style: Theme.of(context).textTheme.bodyText1);
                 if (index == 0 &&
                     index == this._player.getScoreList().length - 1) {
                   return Container(
@@ -82,7 +82,7 @@ class DuizendenPointsListItem extends StatelessWidget {
           padding: EdgeInsets.all(13),
           child: Text(getTotalScore().toString(),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.body1),
+              style: Theme.of(context).textTheme.bodyText1),
           decoration: BoxDecoration(
             border: Border(
               top: BorderSide(
@@ -100,7 +100,7 @@ class DuizendenPointsListItem extends StatelessWidget {
             onEditingComplete: () => addScore(),
             decoration: InputDecoration(
               hintText: 'punten',
-              hintStyle: Theme.of(context).textTheme.body2,
+              hintStyle: Theme.of(context).textTheme.bodyText2,
               suffixIcon: IconButton(
                 icon: Icon(Icons.add, color: Theme.of(context).accentColor),
                 onPressed: () => addScore(),
@@ -109,7 +109,7 @@ class DuizendenPointsListItem extends StatelessWidget {
             ),
             controller: _textEditingController,
             textCapitalization: TextCapitalization.words,
-            style: Theme.of(context).textTheme.body1,
+            style: Theme.of(context).textTheme.bodyText1,
           ))
     ]));
   }

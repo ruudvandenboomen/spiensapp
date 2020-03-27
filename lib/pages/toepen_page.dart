@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toep_app/ui/custom_appbar.dart';
+import 'package:toep_app/ui/appbar/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
 import 'package:toep_app/util/is_dark.dart';
 import '../ui/toepen_points_list_item.dart';

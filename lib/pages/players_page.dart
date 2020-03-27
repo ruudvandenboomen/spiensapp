@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toep_app/animations/listview_effect.dart';
 import 'package:toep_app/pages/game_page.dart';
-import 'package:toep_app/ui/custom_appbar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:toep_app/ui/appbar/settings_appbar.dart';
+import 'package:toep_app/util/theme_changer.dart';
 import '../ui/add_player_widget.dart';
 import '../ui/player_name_list_item.dart';
 import '../objects/player.dart';
@@ -19,14 +21,15 @@ class PlayersPageState extends State<PlayersPage> {
 
   @override
   void dispose() {
-    super.dispose();
     nameInputEditingController.dispose();
+    super.dispose();
   }
 
   String checkPlayerNameValid() {
     String playerName = nameInputEditingController.text;
     if (players.indexWhere((player) =>
-            player.getName().toString().toLowerCase() == playerName.toLowerCase()) >=
+            player.getName().toString().toLowerCase() ==
+            playerName.toLowerCase()) >=
         0) {
       return "Je hebt deze speler al toegevoegd";
     } else if (playerName.isEmpty) {
@@ -73,8 +76,8 @@ class PlayersPageState extends State<PlayersPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                AddPlayerWidget(
-                    nameInputEditingController, () => addPlayer(), () => checkPlayerNameValid()),
+                AddPlayerWidget(nameInputEditingController, () => addPlayer(),
+                    () => checkPlayerNameValid()),
                 Expanded(
                   child: Container(
                       child: ListViewEffect(

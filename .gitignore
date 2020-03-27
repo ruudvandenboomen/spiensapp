@@ -6,5 +6,7 @@
 
 build/
 
+android/.idea/
+
 .flutter-plugins
 .flutter-plugins-dependencies

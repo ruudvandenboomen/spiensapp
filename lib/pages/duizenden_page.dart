@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toep_app/objects/duizenden.dart';
 import 'package:toep_app/objects/player.dart';
-import 'package:toep_app/ui/custom_appbar.dart';
+import 'package:toep_app/ui/appbar/custom_appbar.dart';
 import 'package:toep_app/ui/custom_button.dart';
 import 'package:toep_app/ui/duizenden_points_list_item.dart';
 import 'package:flutter/cupertino.dart';

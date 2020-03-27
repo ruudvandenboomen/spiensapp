@@ -12,7 +12,7 @@ class PlayerNameListItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(_playerName,
-            style: Theme.of(context).textTheme.body1),
+            style: Theme.of(context).textTheme.bodyText1),
         IconButton(
             icon: Icon(Icons.clear),
             color: Theme.of(context).accentColor,

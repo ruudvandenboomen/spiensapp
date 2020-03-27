@@ -68,7 +68,7 @@ class AddPlayerWidget extends StatelessWidget {
                       ),
                       controller: _textEditingController,
                       textCapitalization: TextCapitalization.words,
-                      style: Theme.of(context).textTheme.body1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     )))),
       ],
     );
