@@ -17,8 +17,6 @@ class CustomButtonWidget extends StatelessWidget {
         height: 50,
         minWidth: minWidth != null ? minWidth : 0,
         child: RaisedButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0)),
             child: Text(this._text,
                 style: TextStyle(
                   color: this._textColor, fontSize: 20)),

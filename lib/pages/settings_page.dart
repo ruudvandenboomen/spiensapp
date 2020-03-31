@@ -37,34 +37,35 @@ class SettingsPageState extends State<SettingsPage>
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         appBar: CustomAppBar("Instellingen", context, true),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Container(
-                padding: EdgeInsets.all(20),
-                child: Text("Thema",
-                    style: Theme.of(context).textTheme.bodyText1)),
-            DropdownButton<String>(
-              value: dropdownValue,
-              icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
-              elevation: 16,
-              onChanged: (String newValue) {
-                setState(() {
-                  dropdownValue = newValue;
-                  Prefs.singleton().setTheme(newValue, context);
-                });
-              },
-              items: Prefs.themes.values
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-            )
-          ],
-        ));
+        body: Card(
+            margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Container(
+                      padding: EdgeInsets.all(20),
+                      child: Text("Thema",
+                          style: Theme.of(context).textTheme.bodyText1)),
+                  DropdownButton<String>(
+                    value: dropdownValue,
+                    icon: Icon(Icons.arrow_downward),
+                    iconSize: 24,
+                    elevation: 16,
+                    onChanged: (String newValue) {
+                      setState(() {
+                        dropdownValue = newValue;
+                        Prefs.singleton().setTheme(newValue, context);
+                      });
+                    },
+                    items: Prefs.themes.values
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  )
+                ])));
   }
 }

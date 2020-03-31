@@ -27,7 +27,7 @@ class GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
-        appBar: CustomAppBar("Kaartspel", context, true),
+        appBar: CustomAppBar("Kaartspel", context, true, elevation: 0.0),
         body: Container(
             width: double.infinity,
             decoration: BoxDecoration(color: Theme.of(context).primaryColor),

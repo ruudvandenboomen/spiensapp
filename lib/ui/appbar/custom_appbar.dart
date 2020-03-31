@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class CustomAppBar extends AppBar {
-  CustomAppBar(_text, _context, _leadingButton)
+  CustomAppBar(_text, _context, _leadingButton, {elevation})
       : super(
-            elevation: 0.0,
+            elevation: elevation,
             title: Text(_text,
                 style: TextStyle(
                   fontSize: 30,
