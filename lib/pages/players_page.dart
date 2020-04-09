@@ -82,8 +82,8 @@ class PlayersPageState extends State<PlayersPage> {
                     Navigator.of(context).push(CupertinoPageRoute(
                         builder: (BuildContext context) => GamePage(players)));
                 })),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        body: SingleChildScrollView(
+            child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Card(
@@ -91,7 +91,7 @@ class PlayersPageState extends State<PlayersPage> {
                 child: AddPlayerWidget(nameInputEditingController,
                     () => addPlayer(), () => checkPlayerNameValid())),
             Container(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                padding: EdgeInsets.fromLTRB(30, 0, 20, 0),
                 child: Text("SPELERS",
                     style: Theme.of(context).textTheme.headline2)),
             players.length == 0
@@ -104,14 +104,10 @@ class PlayersPageState extends State<PlayersPage> {
                           style: Theme.of(context).textTheme.bodyText1),
                     ))
                 : Container(),
-            Expanded(
-              child: Container(
-                  child: ListViewEffect(
-                      duration: Duration(milliseconds: 150),
-                      children:
-                          players.map((s) => _buildWidgetExample(s)).toList())),
-            )
+            ListViewEffect(
+                duration: Duration(milliseconds: 150),
+                children: players.map((s) => _buildWidgetExample(s)).toList()),
           ],
-        ));
+        )));
   }
 }

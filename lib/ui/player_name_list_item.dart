@@ -8,21 +8,22 @@ class PlayerNameListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-            height: 50,
-            alignment: Alignment.center,
-            child: Text(_playerName,
-                style: Theme.of(context).textTheme.bodyText1)),
-        Align(
-            alignment: Alignment.centerRight,
-            child: IconButton(
-                icon: Icon(Icons.clear),
-                color: Theme.of(context).accentColor,
-                iconSize: 20.0,
-                onPressed: () => _onTap())),
-      ],
-    );
+    return Container(
+        height: 50,
+        child: Stack(
+          children: <Widget>[
+            Align(
+                alignment: Alignment.center,
+                child: Text(_playerName,
+                    style: Theme.of(context).textTheme.bodyText1)),
+            Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                    icon: Icon(Icons.clear),
+                    color: Theme.of(context).accentColor,
+                    iconSize: 20.0,
+                    onPressed: () => _onTap())),
+          ],
+        ));
   }
 }
