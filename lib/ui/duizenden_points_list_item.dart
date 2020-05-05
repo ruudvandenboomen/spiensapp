@@ -11,10 +11,10 @@ class DuizendenPointsListItem extends StatelessWidget {
 
   int getTotalScore() {
     int total = 0;
-    for (int i in _player.getScoreList()) {
+    for (int i in _player.duizendenScoreList) {
       total += i;
     }
-    _player.setTotalScore(total);
+    _player.totalDuizendenScore = total;
     return total;
   }
 
@@ -32,7 +32,7 @@ class DuizendenPointsListItem extends StatelessWidget {
               width: 120.0,
               padding: EdgeInsets.all(13),
               alignment: Alignment.center,
-              child: Text(_player.getName(),
+              child: Text(_player.name,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   textAlign: TextAlign.center,
@@ -46,7 +46,7 @@ class DuizendenPointsListItem extends StatelessWidget {
                             : Colors.black)),
               ))),
       Container(
-          padding: this._player.getScoreList().length > 0
+          padding: this._player.duizendenScoreList.length > 0
               ? null
               : EdgeInsets.fromLTRB(0, 13, 0, 0),
           constraints: BoxConstraints(maxHeight: 250.0),
@@ -54,14 +54,14 @@ class DuizendenPointsListItem extends StatelessWidget {
           child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemCount: this._player.getScoreList().length,
+              itemCount: this._player.duizendenScoreList.length,
               itemBuilder: (context, index) {
                 var scoreText = Text(
-                    this._player.getScoreList()[index].toString(),
+                    this._player.duizendenScoreList[index].toString(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyText1);
                 if (index == 0 &&
-                    index == this._player.getScoreList().length - 1) {
+                    index == this._player.duizendenScoreList.length - 1) {
                   return Container(
                       padding: EdgeInsets.fromLTRB(0, 13, 0, 13),
                       child: scoreText);
@@ -69,7 +69,7 @@ class DuizendenPointsListItem extends StatelessWidget {
                   return Container(
                       padding: EdgeInsets.fromLTRB(0, 13, 0, 0),
                       child: scoreText);
-                } else if (index == this._player.getScoreList().length - 1) {
+                } else if (index == this._player.duizendenScoreList.length - 1) {
                   return Container(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 13),
                       child: scoreText);

@@ -1,5 +1,4 @@
 import 'package:toep_app/objects/Game.dart';
-
 import './player.dart';
 
 class Toepen extends Game {
@@ -8,7 +7,7 @@ class Toepen extends Game {
 
   bool ended() {
     for (Player player in players) {
-      if (player.getScore() == 10) {
+      if (player.toepenScore == 10) {
         return true;
       }
     }
@@ -17,7 +16,7 @@ class Toepen extends Game {
 
   void updateScore(Player player, int change) {
     player.changeScoreBy(change);
-    if (change > 0 && player.getScore() < 10) scoreChangedPlayers.add(player);
+    if (change > 0 && player.toepenScore < 10) scoreChangedPlayers.add(player);
     if (scoreChangedPlayers.length == (players.length - 1)) {
       scoreChangedPlayers.clear();
     }

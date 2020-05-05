@@ -1,5 +1,4 @@
 import 'package:toep_app/objects/Game.dart';
-
 import './player.dart';
 
 class Duizenden extends Game {
@@ -8,7 +7,7 @@ class Duizenden extends Game {
 
   bool ended() {
     for (Player player in players) {
-      if (player.getTotalScore() >= 1000) {
+      if (player.totalDuizendenScore >= 1000) {
         return true;
       }
     }

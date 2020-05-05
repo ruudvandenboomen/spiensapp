@@ -10,7 +10,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
   @override
-  createState() => new MyAppState();
+  createState() => MyAppState();
 }
 
 class MyAppState extends State<MyApp> {

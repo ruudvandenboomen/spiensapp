@@ -22,7 +22,7 @@ class _ListViewEffect extends State<ListViewEffect> {
     _listBloc.startAnimation(widget.children.length, widget.duration);
 
     return Container(
-        height: ((widget.children.length * 60)).toDouble(),
+        height: (widget.children.length * 60).toDouble(),
         child: ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             addAutomaticKeepAlives: true,

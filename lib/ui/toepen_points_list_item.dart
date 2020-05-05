@@ -20,7 +20,7 @@ class ToepenPointsListItem extends StatelessWidget {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                      child: Text(_player.getName(),
+                      child: Text(_player.name,
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
@@ -41,11 +41,11 @@ class ToepenPointsListItem extends StatelessWidget {
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: _player.getScore() == 9
+            color: _player.toepenScore == 9
                 ? Theme.of(context).accentColor
                 : Colors.transparent),
-        child: _player.getScore() <= 9
-            ? Text(_player.getScore().toString(),
+        child: _player.toepenScore <= 9
+            ? Text(_player.toepenScore.toString(),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText1)
             : Align(

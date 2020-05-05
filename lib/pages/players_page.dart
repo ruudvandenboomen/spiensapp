@@ -27,7 +27,7 @@ class PlayersPageState extends State<PlayersPage> {
   String checkPlayerNameValid() {
     String playerName = nameInputEditingController.text;
     if (players.indexWhere((player) =>
-            player.getName().toString().toLowerCase() ==
+            player.name.toString().toLowerCase() ==
             playerName.toLowerCase()) >=
         0) {
       return "Je hebt deze speler al toegevoegd";
@@ -57,7 +57,7 @@ class PlayersPageState extends State<PlayersPage> {
     return Card(
         margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
         child: PlayerNameListItem(
-            player.getName(), () => removePlayer(players.indexOf(player))));
+            player.name, () => removePlayer(players.indexOf(player))));
   }
 
   @override

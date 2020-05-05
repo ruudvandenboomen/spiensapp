@@ -29,9 +29,9 @@ class ToepenPageState extends State<ToepenPage> {
   }
 
   void newGame() async {
-    List<Player> players = widget.game.getPlayers();
+    List<Player> players = widget.game.players;
     for (Player player in players) {
-      player.setScore(0);
+      player.toepenScore = 0;
     }
     buttonVisible = false;
     widget.scoreChangedPlayers.clear();
@@ -58,16 +58,16 @@ class ToepenPageState extends State<ToepenPage> {
                                   : Colors.black,
                               margin: EdgeInsets.only(left: 20.0, right: 20.0),
                             ),
-                        itemCount: widget.game.getPlayers().length,
+                        itemCount: widget.game.players.length,
                         itemBuilder: (context, index) {
                           var toepenListItem = ToepenPointsListItem(
-                              widget.game.getPlayers()[index], update);
+                              widget.game.players[index], update);
                           if (index == 0) {
                             return Container(
                                 padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                                 child: toepenListItem);
                           } else if (index ==
-                              widget.game.getPlayers().length - 1) {
+                              widget.game.players.length - 1) {
                             return Container(
                                 padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                                 child: toepenListItem);

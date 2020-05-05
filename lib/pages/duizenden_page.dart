@@ -24,9 +24,9 @@ class DuizendenPageState extends State<DuizendenPage> {
   }
 
   void newGame() {
-    for (Player player in widget.game.getPlayers()) {
-      player.setTotalScore(0);
-      player.setScoreList([]);
+    for (Player player in widget.game.players) {
+      player.totalDuizendenScore = 0;
+      player.duizendenScoreList = [];
     }
 
     this.setState(() {});
@@ -64,11 +64,11 @@ class DuizendenPageState extends State<DuizendenPage> {
                                           margin: const EdgeInsets.only(
                                               top: 10.0, bottom: 10.0),
                                         ),
-                                itemCount: widget.game.getPlayers().length,
+                                itemCount: widget.game.players.length,
                                 itemBuilder: (context, index) {
                                   var duizendenListItem =
                                       DuizendenPointsListItem(
-                                          widget.game.getPlayers()[index],
+                                          widget.game.players[index],
                                           update);
                                   if (index == 0) {
                                     return Container(
@@ -76,7 +76,7 @@ class DuizendenPageState extends State<DuizendenPage> {
                                             EdgeInsets.fromLTRB(20, 0, 0, 0),
                                         child: duizendenListItem);
                                   } else if (index ==
-                                      widget.game.getPlayers().length - 1) {
+                                      widget.game.players.length - 1) {
                                     return Container(
                                         padding:
                                             EdgeInsets.fromLTRB(0, 0, 20, 0),
