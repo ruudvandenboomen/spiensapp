@@ -20,6 +20,7 @@ class DuizendenPointsListItem extends StatelessWidget {
 
   addScore() {
     this._player.addToScoreList(int.parse(this._textEditingController.text));
+    this.getTotalScore();
     _updateScore(this._player);
   }
 

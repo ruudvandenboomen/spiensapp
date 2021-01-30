@@ -1,4 +1,4 @@
-import 'package:toep_app/objects/Game.dart';
+import './game.dart';
 import './player.dart';
 
 class Duizenden extends Game {
