@@ -36,10 +36,14 @@ class AddPlayerWidget extends StatelessWidget {
                     child: Container(
                         padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
                         child: TextFormField(
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.name,
+                          textInputAction: TextInputAction.send,
                           validator: (value) {
                             return this._playerValidCheck();
                           },
+                          maxLines: 1,
+                          minLines: 1,
+                          autocorrect: false,
                           onEditingComplete: () => this.checkForm(),
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(

@@ -58,14 +58,14 @@ class ToepenPointsListItem extends StatelessWidget {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
             IconButton(
-                icon: Icon(IconData(0xe800, fontFamily: _kFontFam)),
+                icon: Icon(const IconData(0xe800, fontFamily: _kFontFam)),
                 color: Theme.of(context).accentColor,
                 iconSize: 20.0,
                 onPressed: () => (_updateScore(_player, -1))),
             Container(
                 padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
                 child: IconButton(
-                    icon: Icon(IconData(0xe801, fontFamily: _kFontFam)),
+                    icon: Icon(const IconData(0xe801, fontFamily: _kFontFam)),
                     color: Theme.of(context).accentColor,
                     iconSize: 20.0,
                     onPressed: () => (_updateScore(_player, 1))))
