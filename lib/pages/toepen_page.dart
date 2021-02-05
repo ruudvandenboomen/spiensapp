@@ -8,7 +8,6 @@ import '../objects/toepen.dart';
 
 class ToepenPage extends StatefulWidget {
   final Toepen game;
-  final scoreChangedPlayers = Set();
   ToepenPage(this.game);
 
   @override
@@ -34,7 +33,6 @@ class ToepenPageState extends State<ToepenPage> {
       player.toepenScore = 0;
     }
     buttonVisible = false;
-    widget.scoreChangedPlayers.clear();
     this.setState(() {});
   }
 

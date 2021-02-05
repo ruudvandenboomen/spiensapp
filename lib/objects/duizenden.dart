@@ -2,7 +2,6 @@ import './game.dart';
 import './player.dart';
 
 class Duizenden extends Game {
-  final scoreChangedPlayers = Set();
   Duizenden(List<Player> players) : super(players);
 
   bool ended() {
@@ -14,10 +13,4 @@ class Duizenden extends Game {
     return false;
   }
 
-  void updateScore(Player player) {
-    scoreChangedPlayers.add(player);
-    if (scoreChangedPlayers.length == players.length) {
-      scoreChangedPlayers.clear();
-    }
-  }
 }

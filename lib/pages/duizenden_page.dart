@@ -16,10 +16,8 @@ class DuizendenPage extends StatefulWidget {
 }
 
 class DuizendenPageState extends State<DuizendenPage> {
-  final scoreChangedPlayers = Set();
 
   void update(Player player) {
-    widget.game.updateScore(player);
     this.setState(() {});
   }
 
@@ -33,7 +31,6 @@ class DuizendenPageState extends State<DuizendenPage> {
   }
 
   void setDealer(Player player) {
-    scoreChangedPlayers.clear();
     this.setState(() {});
   }
 
