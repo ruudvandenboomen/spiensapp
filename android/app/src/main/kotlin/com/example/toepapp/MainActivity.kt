@@ -1,4 +1,4 @@
-package com.example.spiensapp
+package com.example.toepapp
 
 import io.flutter.embedding.android.FlutterActivity
 
