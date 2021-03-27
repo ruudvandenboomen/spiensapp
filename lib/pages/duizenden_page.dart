@@ -37,7 +37,7 @@ class DuizendenPageState extends State<DuizendenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         appBar: CustomAppBar("Duizenden", context, true),
         body: Stack(children: <Widget>[
           SingleChildScrollView(

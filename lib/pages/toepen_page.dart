@@ -39,7 +39,7 @@ class ToepenPageState extends State<ToepenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         appBar: CustomAppBar("Toepen", context, true),
         body: Stack(alignment: Alignment.center, children: <Widget>[
           Column(

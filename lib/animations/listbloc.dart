@@ -17,7 +17,7 @@ class ListBloc {
     _positionItem = new PublishSubject<int>();
   }
 
-  Observable<int> get listenAnimation => _positionItem.stream;
+  Stream<int> get listenAnimation => _positionItem.stream;
 
   void startAnimation(int limit, Duration duration) async {
     for (var i = -1; i < limit; i++) {

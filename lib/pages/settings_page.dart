@@ -35,7 +35,7 @@ class SettingsPageState extends State<SettingsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         appBar: CustomAppBar("Instellingen", context, true),
         body: Card(
             margin: EdgeInsets.fromLTRB(20, 10, 20, 10),

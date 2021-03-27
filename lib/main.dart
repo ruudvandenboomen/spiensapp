@@ -39,7 +39,7 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeChanger>(
-      builder: (_) => themeChanger,
+      create: (context) => themeChanger,
       child: MaterialAppWithTheme(),
     );
   }

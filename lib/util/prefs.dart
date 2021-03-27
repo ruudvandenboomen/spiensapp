@@ -58,7 +58,7 @@ class Prefs {
     _getPrefs().then((prefs) {
       prefs.setString(THEME_PREF, theme);
     });
-    ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
+    ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context, listen: false);
     _themeChanger.setThemeMode(stringToThemeMode(theme));
   }
 
