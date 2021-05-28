@@ -27,8 +27,7 @@ class PlayersPageState extends State<PlayersPage> {
   String checkPlayerNameValid() {
     String playerName = nameInputEditingController.text;
     if (players.indexWhere((player) =>
-            player.name.toString().toLowerCase() ==
-            playerName.toLowerCase()) >=
+            player.name.toString().toLowerCase() == playerName.toLowerCase()) >=
         0) {
       return "Je hebt deze speler al toegevoegd";
     } else if (playerName.isEmpty) {
@@ -78,7 +77,7 @@ class PlayersPageState extends State<PlayersPage> {
                     DarkMode(context).isEnabled ? Colors.grey : Colors.blue,
                 icon: Container(),
                 onPressed: () {
-                  if (players.length > 1)
+                  if (players.length >= 1)
                     Navigator.of(context).push(CupertinoPageRoute(
                         builder: (BuildContext context) => GamePage(players)));
                 })),
