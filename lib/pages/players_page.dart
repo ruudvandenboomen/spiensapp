@@ -48,7 +48,7 @@ class PlayersPageState extends State<PlayersPage> {
   }
 
   void setButtonVisible() {
-    _readyButtonVisible = players.length > 1;
+    _readyButtonVisible = players.length > 0;
     setState(() {});
   }
 
@@ -77,7 +77,7 @@ class PlayersPageState extends State<PlayersPage> {
                     DarkMode(context).isEnabled ? Colors.grey : Colors.blue,
                 icon: Container(),
                 onPressed: () {
-                  if (players.length >= 1)
+                  if (_readyButtonVisible)
                     Navigator.of(context).push(CupertinoPageRoute(
                         builder: (BuildContext context) => GamePage(players)));
                 })),
